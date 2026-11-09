@@ -13,6 +13,8 @@ FarmControl is a Bukkit plugin that allows you to control certain properties of 
 * Low impact - with the brunt of the plugin's processing performed asynchronously.
 
 ## Building
+This branch targets Paper 26.2 and requires Java 25 to build and run.
+
 If you would like to build the plugin yourself you can follow these steps.
 
 1\. Clone FarmControl and build
