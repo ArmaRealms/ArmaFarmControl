@@ -4,6 +4,8 @@ import com.froobworld.farmcontrol.FarmControl;
 import com.froobworld.farmcontrol.config.FcConfig;
 import com.froobworld.farmcontrol.controller.entity.SnapshotEntity;
 import org.bukkit.World;
+import org.bukkit.entity.ChestBoat;
+import org.bukkit.entity.EntityType;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -57,8 +59,11 @@ public class ExclusionManager {
                     return true;
                 }
             }
+            EntityType entityType = snapshotEntity.getEntityType();
             for (String type : excludeType) {
-                if (snapshotEntity.getEntityType().toString().equalsIgnoreCase(type)) {
+                if (entityType.name().equalsIgnoreCase(type)
+                        || ("minecart_chest".equalsIgnoreCase(type) && entityType == EntityType.CHEST_MINECART)
+                        || ("chest_boat".equalsIgnoreCase(type) && snapshotEntity.getEntity() instanceof ChestBoat)) {
                     return true;
                 }
             }

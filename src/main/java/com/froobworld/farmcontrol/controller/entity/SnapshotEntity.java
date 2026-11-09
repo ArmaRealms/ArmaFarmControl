@@ -8,10 +8,8 @@ import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SnapshotEntity {
-    private static final AtomicBoolean useWoodType = new AtomicBoolean(false);
     private final Entity entity;
     private final int entityId;
     private final Vector location;
@@ -52,19 +50,8 @@ public class SnapshotEntity {
         if (entity instanceof Item) {
             classifications.add(((Item) entity).getItemStack().getType());
         }
-        if (entity instanceof Boat) {
-            // try to add boat type, falling back to wood type for version < 1.19
-            if (!SnapshotEntity.useWoodType.get()) {
-                try {
-                    classifications.add(((Boat) entity).getBoatType());
-                } catch (Throwable throwable) {
-                    useWoodType.set(true);
-                }
-            }
-            if (SnapshotEntity.useWoodType.get()) {
-                //noinspection deprecation
-                classifications.add(((Boat) entity).getWoodType());
-            }
+        if (entity instanceof Boat boat) {
+            classifications.add(boat.getBoatType());
         }
     }
 
