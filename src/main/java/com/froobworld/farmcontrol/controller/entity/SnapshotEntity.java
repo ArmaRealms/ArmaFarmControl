@@ -50,9 +50,6 @@ public class SnapshotEntity {
         if (entity instanceof Item) {
             classifications.add(((Item) entity).getItemStack().getType());
         }
-        if (entity instanceof Boat boat) {
-            classifications.add(boat.getBoatType());
-        }
     }
 
     public Class<? extends Entity> getEntityClass() {
